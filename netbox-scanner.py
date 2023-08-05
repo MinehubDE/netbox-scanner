@@ -23,7 +23,7 @@ if argument == 'prime':
 
 
 local_config = expanduser('~/.netbox-scanner.conf')
-global_config = '/opt/netbox/netbox-scanner.conf'
+global_config = '/data/netbox-scanner.conf'
 config = ConfigParser()
 
 if isfile(local_config):
