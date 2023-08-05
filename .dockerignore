@@ -1,0 +1,7 @@
+*
+!entrypoint.sh
+!nbs
+!netbox-scanner.conf
+!netbox-scanner.py
+!nmap-scan.sh
+!requirements.txt
