@@ -108,6 +108,7 @@ venv.bak/
 
 scans/*
 logs/*
+data/*
 
 test_api.py
 
