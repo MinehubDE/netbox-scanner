@@ -31,18 +31,19 @@ if [[ -z $NETWORKS ]]; then
 fi
 
 # make sure scan and logs directories exist
-mkdir -p /data/scans /app/logs
+mkdir -p /data/scans /app/logs /tmp/scans
 
 TODAY=$(date +%Y-%m-%d_%H-%M-%Z)
 
 for net in "${NETWORKS[@]}"; do
     NETNAME=$(echo $net | tr -s '/' '-')
     # requires sudo
-    #nmap "$net" -T4 -O -F --host-timeout 10s -oX /tmp/nmap-"$NETNAME".xml
+    #nmap "$net" -T4 -O -F --host-timeout 10s -oX /tmp/scans/nmap-"$NETNAME".xml
     # does not require sudo
-    nmap "$net" -T4 -sn --host-timeout 10s -oX /tmp/nmap-"$NETNAME".xml
+    nmap "$net" -T4 -sn --host-timeout 10s -oX /tmp/scans/nmap-"$NETNAME".xml
 done
 
 /venv/bin/python3 /app/netbox-scanner.py nmap
-cd /tmp
+cd /tmp/scans
 tar -czvf /data/scans/nmap-"$TODAY".tar.gz nmap-*.xml
+rm -r /tmp/scans
